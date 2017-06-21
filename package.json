@@ -1,8 +1,8 @@
 {
-  "name": "i2x",
+  "name": "Inkitt",
   "version": "0.0.2",
-  "description": "Solution to the challenge without boilerplate",
-  "author": "Ahsan Abbas",
+  "description": "Medium style commenter",
+  "author": "Ahsan Abbas <rizvified@gmail.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -13,10 +13,9 @@
   },
   "dependencies": {
     "express": "^4.15.2",
+    "prop-types": "^15.5.10",
     "react": "15.4.2",
-    "react-dom": "15.4.2",
-    "react-router": "3.0.0",
-    "whatwg-fetch": "^2.0.3"
+    "react-dom": "15.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -27,7 +26,6 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "chai": "^3.5.0",
     "cross-env": "^3.1.3",
     "css-loader": "^0.28.0",
     "enzyme": "^2.8.2",
@@ -37,15 +35,10 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "file-loader": "^0.11.1",
-    "image-webpack-loader": "^3.3.0",
     "jest": "^19.0.2",
-    "moment": "^2.18.1",
-    "moment-timezone": "^0.5.13",
     "node-sass": "^4.5.2",
     "react-addons-test-utils": "^15.5.1",
     "sass-loader": "^3.2.0",
-    "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.2"
