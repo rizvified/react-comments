@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Page from './components/page.jsx';
+import Article from './components/article.jsx';
 
 const renderApp = () => {
   render(
-    <Page />,
+    <Article />,
     document.getElementById('app'),
   );
 };
