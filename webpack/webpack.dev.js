@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '..', 'dist'),
-    filename: 'bundle.js',
+    filename: 'script.js',
     publicPath: '/dist/',
   },
   plugins: [
@@ -18,11 +18,11 @@ module.exports = {
     rules: [
       { test: /\.jsx?$/,
         loader: 'babel-loader',
-        // include: path.join(__dirname, '..', 'src'),
+        include: path.join(__dirname, '..', 'src'),
       },
       { test: /\.scss?$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
-        // include: path.join(__dirname, '..', 'src', 'styles'),
+        include: path.join(__dirname, '..', 'src', 'styles'),
       },
     ],
   },

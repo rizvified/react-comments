@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import Article from '../src/components/article.jsx';
 import Content from '../src/components/content.jsx';
 import CommentButton from '../src/components/commentButton.jsx';
+import CommentBox from '../src/components/commentBox.jsx';
 
 
 describe('Article', () => {
@@ -19,5 +20,10 @@ describe('Article', () => {
   it('has a CommentButton component', () => {
     const wrapper = shallow(<Article />);
     expect(wrapper.find(CommentButton)).toHaveLength(1);
+  });
+
+  it('has a CommentBox component', () => {
+    const wrapper = shallow(<Article />);
+    expect(wrapper.find(CommentBox)).toHaveLength(1);
   });
 });

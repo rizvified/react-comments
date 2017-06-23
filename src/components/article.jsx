@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Content from './content.jsx';
 import CommentButton from './commentButton.jsx';
+import CommentBox from './commentBox.jsx';
 
 import getSelectedRange from '../utils/selection.js';
 
@@ -85,6 +86,7 @@ class Article extends Component {
           hidden={ hiddenCommentBtn }
           saveSelection={ this.saveSelected }
         />
+        <CommentBox />
       </main>
     );
   }

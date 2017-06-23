@@ -1,12 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '..', 'dist'),
-    filename: 'bundle.js',
+    filename: 'script.js',
     publicPath: '/dist/',
   },
 
@@ -22,6 +23,7 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
+    new ExtractTextPlugin('style.css'),
   ],
 
   module: {
@@ -29,11 +31,14 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        include: path.join(__dirname, '..', 'src') },
+        include: path.join(__dirname, '..', 'src'),
+      },
       {
         test: /\.scss?$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
-        include: path.join(__dirname, '..', 'src', 'styles'),
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
     ],
   },
