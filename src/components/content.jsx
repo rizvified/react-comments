@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 
 const Content = ({ handleMouseChange }) => (
   <section
-    id='content'
+    className='content'
     onMouseMove={ handleMouseChange }
   >
-    <h1>
+    <h1 className='content_head'>
         Lessons From The Internet Bubble
     </h1>
-    <p>
+    <p className='content_para'>
       Between the spring of 2000 and the end of 2001, I had the worst,
       most stressful, and most painful business period of my life.
       While I’m sure the financial crisis of 2008 was worse for many people,
       for me it paled in comparison to the misery of this 21-month stretch.
     </p>
-    <p>
+    <p className='content_para'>
       A very simple thing happened that year in my world.
       The market shifted from rewarding (and funding) growth to rewarding
       (and funding) profitability.
@@ -28,7 +28,7 @@ const Content = ({ handleMouseChange }) => (
       to the article was anger, frustration with being maligned, and incredulity
       that Barron’s would write such an irresponsible article.
     </p>
-    <p>
+    <p className='content_para'>
       My reaction was stupid and immature. Instead,
       I should have paid attention to the message, thought about it,
       and taken appropriate action. Instead, I,

@@ -1,16 +1,5 @@
-body {
-  margin: 0;
-  padding: 0;
-  background: #fafafa;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-main {
-  display: flex;
-  padding: 5% 25% 5% 15%;
-}
-
+// import all the glitter
+@import "globals/__init";
 @import "components/_content";
 @import "components/_commentButton";
+@import "components/_commentBox";

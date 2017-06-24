@@ -8,6 +8,7 @@ import getSelectedRange from '../utils/selection.js';
 
 class Article extends Component {
   state = {
+    hiddenCommentBox: true,
     hiddenCommentBtn: true,
     commentBtnLayout: {
       position: 'absolute',
@@ -17,8 +18,12 @@ class Article extends Component {
       widthInPixels: 70
     },
     selectedText: null,
+    comment: '',
+    commentList: ''
   }
 
+  /* helper functions */
+  // computes the comment button position based on selected area
   setPosition = ({ left, top, width, height }) => {
     const { heightInPixels, widthInPixels } = this.state.commentBtnLayout;
     const computedLeft = left + (width / 2) - (widthInPixels / 2);
@@ -36,27 +41,27 @@ class Article extends Component {
     });
   }
 
-  showCommentBtn = () => {
+  // add uniqueId to the recent comment
+  wrapSelectedTextWithId = (uniqueId) => {
+    const markWrapper = document.createElement('mark');
+    markWrapper.setAttribute('id', uniqueId);
+    this.state.selectedText.surroundContents(markWrapper);
+  }
+
+  // function for toggling state
+  toggleState = (updateState) => {
     this.setState(Object.assign(
       {},
-      this.state.hiddenCommentBtn,
+      this.state.updateState,
       {
-        hiddenCommentBtn: false
+        [updateState]: !this.state[updateState]
       }
     ));
   }
+  /* --- */
 
-  saveSelected = () => {
-    const savedSelection = getSelectedRange();
-    this.setState(Object.assign(
-      {},
-      this.state.selectedText,
-      {
-        selectedText: savedSelection
-      }
-    ));
-  }
-
+  /* event handlers */
+  // callback fired is mouse's screen position is changed
   mouseChangeHandler = () => {
     const selection = getSelectedRange();
 
@@ -71,11 +76,106 @@ class Article extends Component {
     }
   };
 
+  // callback fired when comment is changed
+  formChangeHandler = (e) => {
+    this.setState(Object.assign(
+      {},
+      this.state.comment,
+      {
+        comment: e.target.value
+      }
+    ));
+  }
+
+  // callback fired when comment is submitted
+  formSubmitHandler = (e) => {
+    e.preventDefault();
+
+    if (this.state.comment) {
+      const uniqueId = Date.now();
+
+      this.wrapSelectedTextWithId(uniqueId);
+
+      this.updateCommentList({
+        id: uniqueId,
+        message: this.state.comment
+      });
+
+      this.toggleCommentBtn();
+      this.toggleCommentBox();
+      this.clearComment();
+    }
+  }
+  /* --- */
+
+
+  // clears the current comment from state
+  clearComment = () => {
+    this.setState(Object.assign(
+      {},
+      this.state.comment,
+      {
+        comment: ''
+      }
+    ));
+  }
+
+  // displays the comment button
+  showCommentBtn = () => {
+    this.setState(Object.assign(
+      {},
+      this.state.hiddenCommentBtn,
+      {
+        hiddenCommentBtn: false
+      }
+    ));
+  }
+
+  // shows or hides the comment box
+  toggleCommentBox = () => {
+    this.toggleState('hiddenCommentBox');
+  }
+
+  // shows or hides the comment button
+  toggleCommentBtn = () => {
+    this.toggleState('hiddenCommentBtn');
+  }
+
+  // add new comment to the comment list
+  updateCommentList = (newComment) => {
+    this.setState(Object.assign(
+      {},
+      this.state.commentList,
+      {
+        commentList: [...this.state.commentList, newComment]
+      }
+    ));
+  }
+
+  // saves the selected text range in state
+  saveSelected = () => {
+    const savedSelection = getSelectedRange();
+    this.setState(Object.assign(
+      {},
+      this.state.selectedText,
+      {
+        selectedText: savedSelection
+      }
+    ));
+    this.toggleCommentBox();
+  }
+
   render() {
     const {
+      hiddenCommentBox,
       hiddenCommentBtn,
-      commentBtnLayout
+      commentBtnLayout,
+      comment,
+      commentList
     } = this.state;
+
+    console.log(this.state);
+
     return (
       <main>
         <Content
@@ -86,7 +186,12 @@ class Article extends Component {
           hidden={ hiddenCommentBtn }
           saveSelection={ this.saveSelected }
         />
-        <CommentBox />
+        <CommentBox
+          hidden={ hiddenCommentBox }
+          comment={ comment }
+          handleFormChange={ this.formChangeHandler }
+          handleFormSubmit={ this.formSubmitHandler }
+        />
       </main>
     );
   }

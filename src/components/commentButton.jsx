@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const CommentButton = ({ hidden, layout, saveSelection }) => (
   <div
-    id='commentButton'
     style={ {
       display: hidden === true ? 'none' : 'flex',
       position: layout.position,

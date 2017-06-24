@@ -10,26 +10,26 @@ main {
   display: flex;
   padding: 5% 25% 5% 15%; }
 
-#content section {
+.content {
   text-align: justify;
   background: #fff;
   padding: 20px; }
-  #content section h1 {
+  .content__head {
     text-align: center; }
 
-#commentBtn .buttons-group {
+.buttons-group {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  #commentBtn .buttons-group .buttons-group__comment-btn {
+  .buttons-group__comment-btn {
     border: 0 none;
     background: black;
     color: white;
     border-radius: 2px;
     z-index: 500; }
-    #commentBtn .buttons-group .buttons-group__comment-btn .fa-comment {
+    .buttons-group__comment-btn .fa-comment {
       font-size: 20px; }
-  #commentBtn .buttons-group .buttons-group__down-arrow-tip {
+  .buttons-group__down-arrow-tip {
     width: 12px;
     height: 12px;
     margin-top: -2px;

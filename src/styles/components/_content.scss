@@ -1,11 +1,9 @@
-#content {
-  section {
-    text-align: justify;
-    background: #fff;
-    padding: 20px;
-
-    h1 {
-      text-align: center;
-    }
+.content {
+  text-align: justify;
+  background: #fff;
+  padding: 20px;
+  
+  @at-root #{&}__head {
+    text-align: center;
   }
 }

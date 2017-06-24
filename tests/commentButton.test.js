@@ -3,9 +3,18 @@ import { shallow } from 'enzyme';
 
 import CommentButton from '../src/components/commentButton.jsx';
 
+const layout = {
+  position: 'absolute',
+  left: '0',
+  top: '0',
+  heightInPixels: 28,
+  widthInPixels: 70,
+};
+const hidden = true;
+
 describe('CommentButton', () => {
   it('renders without exploding', () => {
-    const wrapper = shallow(<CommentButton />);
+    const wrapper = shallow(<CommentButton layout={ layout } hidden={ hidden } />);
   });
 
   it('clicking comment button make CommentBox visible', () => {
@@ -13,8 +22,8 @@ describe('CommentButton', () => {
     const wrapper = shallow(
       <CommentButton
         saveSelection={ saveSelected }
-        hidden={ false }
-        layout={ { left: '0', right: '0', position: 'absolute', width: 30, height: 70 } }
+        hidden={ !hidden }
+        layout={ layout }
       />,
     );
 
