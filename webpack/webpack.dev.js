@@ -3,7 +3,10 @@ const webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/index.js',
+  entry: [
+    'react-hot-loader/patch',
+    './src/index.js',
+  ],
   output: {
     path: path.join(__dirname, '..', 'dist'),
     filename: 'script.js',
@@ -17,7 +20,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.jsx?$/,
-        loader: 'babel-loader',
+        loaders: ['react-hot-loader/webpack', 'babel-loader'],
         include: path.join(__dirname, '..', 'src'),
       },
       { test: /\.scss?$/,

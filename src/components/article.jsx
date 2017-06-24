@@ -18,7 +18,8 @@ class Article extends Component {
       heightInPixels: 28,
       widthInPixels: 70
     },
-    selectedText: null,
+    selectedTextRange: null,
+    selectedText: '',
     comment: '',
     commentList: []
   }
@@ -44,9 +45,9 @@ class Article extends Component {
 
   // add uniqueId to the recent comment
   wrapSelectedTextWithId = (uniqueId) => {
-    const markWrapper = document.createElement('mark');
+    const markWrapper = document.createElement('span');
     markWrapper.setAttribute('id', uniqueId);
-    this.state.selectedText.surroundContents(markWrapper);
+    this.state.selectedTextRange.surroundContents(markWrapper);
   }
 
   // function for toggling state
@@ -62,8 +63,8 @@ class Article extends Component {
   /* --- */
 
   /* event handlers */
-  // callback fired is mouse's screen position is changed
-  mouseChangeHandler = () => {
+  // callback fired is mouse's button is released
+  mouseUpHandler = () => {
     const selection = getSelectedRange();
 
     if (
@@ -72,8 +73,11 @@ class Article extends Component {
       selection.toString() !== " "
       ) {
       const rectangle = selection.getBoundingClientRect();
+
       this.setPosition(rectangle);
       this.showCommentBtn();
+    } else {
+      this.hideCommentBtn();
     }
   };
 
@@ -94,11 +98,13 @@ class Article extends Component {
 
     if (this.state.comment) {
       const uniqueId = Date.now();
+      const text = this.state.selectedText;
 
       this.wrapSelectedTextWithId(uniqueId);
 
       this.updateCommentList({
         id: uniqueId,
+        selected_text: text,
         message: this.state.comment
       });
 
@@ -133,6 +139,16 @@ class Article extends Component {
     ));
   }
 
+  // hides the comment button
+  hideCommentBtn = () => {
+    this.setState(Object.assign(
+      {},
+      this.state.hiddenCommentBtn,
+      {
+        hiddenCommentBtn: true
+      }
+    ));
+  }
   // shows or hides the comment box
   toggleCommentBox = () => {
     this.toggleState('hiddenCommentBox');
@@ -155,16 +171,28 @@ class Article extends Component {
   }
 
   // saves the selected text range in state
-  saveSelected = () => {
-    const savedSelection = getSelectedRange();
+  saveTextRange = () => {
+    const selectedRange = getSelectedRange();
+    this.setState(Object.assign(
+      {},
+      this.state.selectedTextRange,
+      {
+        selectedTextRange: selectedRange
+      }
+    ));
+    this.saveText();
+    this.toggleCommentBox();
+  }
+
+  saveText = () => {
+    const selectedText = getSelectedRange().toString();
     this.setState(Object.assign(
       {},
       this.state.selectedText,
       {
-        selectedText: savedSelection
+        selectedText: selectedText
       }
     ));
-    this.toggleCommentBox();
   }
   /* --- */
 
@@ -173,21 +201,23 @@ class Article extends Component {
       hiddenCommentBox,
       hiddenCommentBtn,
       commentBtnLayout,
+      selectedText,
       comment,
       commentList
     } = this.state;
     return (
       <main className='article'>
         <Content
-          handleMouseChange={ this.mouseChangeHandler }
+          handleMouseUp={ this.mouseUpHandler }
         />
         <CommentButton
           layout={ commentBtnLayout }
           hidden={ hiddenCommentBtn }
-          saveSelection={ this.saveSelected }
+          saveSelection={ this.saveTextRange }
         />
         <CommentBox
           hidden={ hiddenCommentBox }
+          selected={ selectedText }
           comment={ comment }
           handleFormChange={ this.formChangeHandler }
           handleFormSubmit={ this.formSubmitHandler }

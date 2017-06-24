@@ -1,34 +1,73 @@
 .comment-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 20%;
-  height: 140px;
-  left: 75%;
+  display: block;
+  width: 30%;
+  min-height: 255px;
+  left: 69%;
   top: 50%;
-  position: fixed;
-  margin-left: 40px;
-  border: 1px solid darkgray;
+  position: absolute;;
   padding: 4px;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.10)!important;
+  box-shadow: 0 1px 7px rgba(0,0,0,.05);
+
+  @at-root #{&}__heading {
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+
+  @at-root #{&}__seperator {
+    margin: 0 10px 0;
+  }
+
+  @at-root #{&}__selected-text {
+    background-color: #cbffba;
+    border-left: 3px solid #4caf50;
+    margin: 12px 10px 10px;
+    padding: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: {
+      x: hidden;
+      y: hidden;
+    }
+    font : {
+      size: 14px;
+      style: italic;
+    }
+  }
 
   @at-root #{&}__text-area {
     border: 0 none;
     resize: none;
+    min-height: 100px;
     width: 100%;
-    height: 100px;
     position: relative;
+    margin-top: 8px;
+    padding: 2px 10px;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   @at-root #{&}__submit-button {
-    font-size: 16px;
-    font-weight: 600;
-    background: green;
-    color: white;
+    background: transparent;
+    color: #008E00;
+    margin: 0 10px;
+    font: {
+      size: 15px;
+      weight: normal;
+    }
     border: {
       width: 0;
       style: none;
       radius: 5px;
     }
+  }
+  @at-root #{&}__user-icon {
+    color: rgba(0,0,0,.55);
+    font-size: 26px;
+    margin-right: 15px
   }
 }

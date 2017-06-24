@@ -3,11 +3,44 @@
   background: #fff;
   padding: 20px;
 
+  ::selection {
+    background-color: rgba(110, 255, 89, 1)
+  }
+  ::-moz-selection {
+    background-color: rgba(110, 255, 89, 1)
+  }
+
   @at-root #{&}__head {
-    text-align: center;
+    padding-top: 35px;
+    font: {
+      family: 'Lato', sans-serif;
+      weight: 700;
+      style: normal;
+      size: 40px;
+    }
+    margin: {
+      top: 0;
+      bottom: 0;
+    }
+    line-height: 1.04;
+    letter-spacing: -.028em;
   }
-  
+
   @at-root #{&}__para {
-    font-size: 22pt;
+    margin-top: 29px;
+    margin-bottom: 0;
+    font: {
+      family: 'Pontano Sans', sans-serif;
+      weight: 400;
+      style: normal;
+      size: 20px;
+    }
+    line-height: 1.58;
+    letter-spacing: -.003em;
+
+    @at-root #{&}--first {
+      margin-top: 10px;
+    }
   }
+
 }
