@@ -17,7 +17,7 @@ const CommentButton = ({ hidden, layout, saveSelection }) => (
         onClick={ saveSelection }
         className='buttons-group__comment-btn'
       >
-        <i className='fa fa-comment' />
+        Comment
       </button>
       <div className='buttons-group__down-arrow-tip' />
     </div>
