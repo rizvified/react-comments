@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import ReactTestUtils from 'react-addons-test-utils';
 
 import CommentButton from '../src/components/commentButton.jsx';
 
@@ -14,7 +15,7 @@ const hidden = true;
 
 describe('CommentButton', () => {
   it('renders without exploding', () => {
-    const wrapper = shallow(<CommentButton layout={ layout } hidden={ hidden } />);
+    ReactTestUtils.renderIntoDocument(<CommentButton layout={ layout } hidden={ hidden } />);
   });
 
   it('clicking comment button make CommentBox visible', () => {

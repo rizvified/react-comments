@@ -1,11 +1,12 @@
 import React from 'react';
 import { shallow, render } from 'enzyme';
+import ReactTestUtils from 'react-addons-test-utils';
 
 import Content from '../src/components/content.jsx';
 
 describe('Content', () => {
   it('renders without exploding', () => {
-    const wrapper = shallow(<Content />);
+    ReactTestUtils.renderIntoDocument(<Content />);
   });
 
   it('renders the title', () => {

@@ -1,12 +1,13 @@
 import React from 'react';
 import { shallow, render, mount } from 'enzyme';
+import ReactTestUtils from 'react-addons-test-utils';
 
 import Article from '../src/components/article.jsx';
 import CommentBox from '../src/components/commentBox.jsx';
 
 describe('CommentBox', () => {
   it('renders without exploding', () => {
-    const wrapper = shallow(<CommentBox />);
+    ReactTestUtils.renderIntoDocument(<CommentBox />);
   });
 
   it('renders a form', () => {

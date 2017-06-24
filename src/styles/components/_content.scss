@@ -2,8 +2,12 @@
   text-align: justify;
   background: #fff;
   padding: 20px;
-  
+
   @at-root #{&}__head {
     text-align: center;
+  }
+  
+  @at-root #{&}__para {
+    font-size: 22pt;
   }
 }

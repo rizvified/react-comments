@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Content from './content.jsx';
 import CommentButton from './commentButton.jsx';
 import CommentBox from './commentBox.jsx';
+import CommentList from './commentList.jsx';
 
 import getSelectedRange from '../utils/selection.js';
 
@@ -19,7 +20,7 @@ class Article extends Component {
     },
     selectedText: null,
     comment: '',
-    commentList: ''
+    commentList: []
   }
 
   /* helper functions */
@@ -109,6 +110,7 @@ class Article extends Component {
   /* --- */
 
 
+  /* general functions */
   // clears the current comment from state
   clearComment = () => {
     this.setState(Object.assign(
@@ -164,6 +166,7 @@ class Article extends Component {
     ));
     this.toggleCommentBox();
   }
+  /* --- */
 
   render() {
     const {
@@ -173,11 +176,8 @@ class Article extends Component {
       comment,
       commentList
     } = this.state;
-
-    console.log(this.state);
-
     return (
-      <main>
+      <main className='article'>
         <Content
           handleMouseChange={ this.mouseChangeHandler }
         />
@@ -191,6 +191,9 @@ class Article extends Component {
           comment={ comment }
           handleFormChange={ this.formChangeHandler }
           handleFormSubmit={ this.formSubmitHandler }
+        />
+        <CommentList
+          comments={ commentList }
         />
       </main>
     );
