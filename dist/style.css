@@ -70,9 +70,6 @@ body {
     color: white;
     border-radius: 2px;
     z-index: 500; }
-    .buttons-group__comment-btn--active {
-      transition: top 75ms ease-out,left 75ms ease-out;
-      animation: pop-upwards 180ms forwards linear; }
   .buttons-group__down-arrow-tip {
     width: 12px;
     height: 12px;
@@ -80,31 +77,28 @@ body {
     background: rgba(51, 51, 51, 0.85);
     z-index: 500;
     clip-path: polygon(0% 0%, 50% 50%, 100% 0%); }
-    .buttons-group__down-arrow-tip--active {
-      transition: top 75ms ease-out,left 75ms ease-out;
-      animation: pop-upwards 180ms forwards linear; }
 
 .comment-box {
   display: block;
+  position: fixed;
+  visibility: visible;
   width: 30%;
   min-height: 255px;
   left: 69%;
   top: 50%;
-  position: fixed;
   padding: 4px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05); }
-  .comment-box--active {
-    transition: top 75ms ease-out,left 75ms ease-out;
-    animation: pop-upwards 180ms forwards linear; }
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
+  transition: top 75ms ease-out,left 75ms ease-out;
+  animation: pop-upwards 180ms forwards linear; }
   .comment-box__heading {
     font-size: 14px;
     margin-top: 10px;
     padding: 0 10px; }
   .comment-box__close-button {
     background: transparent;
-    margin: 10px;
+    margin: 3px 10px 10px;
     border-width: 0; }
     .comment-box__close-button .fa-times {
       color: rgba(0, 0, 0, 0.55); }
@@ -113,7 +107,7 @@ body {
   .comment-box__selected-text {
     background-color: #cbffba;
     border-left: 3px solid #4caf50;
-    margin: 12px 10px 10px;
+    margin: 12px 20px 10px;
     padding: 10px;
     text-overflow: ellipsis;
     white-space: nowrap;
