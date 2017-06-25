@@ -1,3 +1,7 @@
+# medium-comments
+
+A medium like commenting system built with react
+
 ## Quick start
 
 1. Run `yarn` to install dependencies
