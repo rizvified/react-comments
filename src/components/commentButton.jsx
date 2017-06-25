@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const CommentButton = ({ hidden, layout, saveSelection }) => (
   <div
     style={ {
-      display: hidden === true ? 'none' : 'flex',
+      display: hidden === true ? 'none' : 'block',
       position: layout.position,
       left: layout.left,
       top: layout.top,
@@ -17,7 +17,9 @@ const CommentButton = ({ hidden, layout, saveSelection }) => (
         onClick={ saveSelection }
         className='buttons-group__comment-btn'
       >
-        Comment
+        <span>
+          Comment
+        </span>
       </button>
       <div className='buttons-group__down-arrow-tip' />
     </div>

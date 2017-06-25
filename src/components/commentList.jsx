@@ -6,17 +6,22 @@ const CommentList = ({ comments }) => (
     <div className='comment-list'>
       {
         comments.map(comment => (
-          <span key={ comment.id } className='col-md-12'>
+          <div key={ comment.id } className='comment-list__box'>
+            <div className='comment-list__user-info'>
+              <i className='fa fa-user-circle comment-list__user-avatar pull-left' />
+              <h3 className='comment-list__user-name'>Anonymous</h3>
+            </div>
             <a href={ `#${comment.id}` }>
-              <strong>Anonymous</strong> :
+              <div className='comment-list__selected-text-box'>
+                <h3 className='comment-list__selected-text'>
+                  {comment.selected_text}
+                </h3>
+              </div>
+            </a>
             <p className='comment-list__comment'>
               {comment.message}
             </p>
-              <h3>
-                {comment.selected_text}
-              </h3>
-            </a>
-          </span>
+          </div>
       ))
     }
     </div>

@@ -1,13 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CommentBox = ({ hidden, comment, selected, handleFormSubmit, handleFormChange }) => (
-  <div hidden={ hidden }>
+const CommentBox = ({ hidden, comment, selected, handleBoxClose, handleFormSubmit, handleFormChange }) => (
+  <div
+    style={ {
+      display: hidden ? 'none' : 'block',
+      visibility: hidden ? 'none' : 'visible',
+    } }
+  >
     <form
       className='comment-box'
       onSubmit={ handleFormSubmit }
     >
-      <h3 className='comment-box__heading'>Responses</h3>
+      <div className='row no-margin'>
+        <h3 className='comment-box__heading pull-left'>Responses</h3>
+        <button
+          type='button'
+          className='comment-box__close-button pull-right'
+          onClick={ handleBoxClose }
+        >
+          <i className='fa fa-times' />
+        </button>
+      </div>
       <hr className='comment-box__seperator' />
       <h3 className='comment-box__selected-text'>
         { selected }
@@ -19,6 +33,7 @@ const CommentBox = ({ hidden, comment, selected, handleFormSubmit, handleFormCha
         onChange={ handleFormChange }
         value={ comment }
         autoFocus
+        required
       />
       <div className='row no-margin'>
         <button type='submit' className='comment-box__submit-button pull-left'>
@@ -33,6 +48,8 @@ const CommentBox = ({ hidden, comment, selected, handleFormSubmit, handleFormCha
 CommentBox.propTypes = {
   hidden: PropTypes.bool,
   comment: PropTypes.string,
+  selected: PropTypes.string,
+  handleBoxClose: PropTypes.func,
   handleFormChange: PropTypes.func,
   handleFormSubmit: PropTypes.func,
 };

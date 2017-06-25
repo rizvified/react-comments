@@ -21,7 +21,7 @@ class Article extends Component {
     selectedTextRange: null,
     selectedText: '',
     comment: '',
-    commentList: []
+    commentList:  []
   }
 
   /* helper functions */
@@ -49,21 +49,10 @@ class Article extends Component {
     markWrapper.setAttribute('id', uniqueId);
     this.state.selectedTextRange.surroundContents(markWrapper);
   }
-
-  // function for toggling state
-  toggleState = (updateState) => {
-    this.setState(Object.assign(
-      {},
-      this.state.updateState,
-      {
-        [updateState]: !this.state[updateState]
-      }
-    ));
-  }
   /* --- */
 
   /* event handlers */
-  // callback fired is mouse's button is released
+  // callback fired when mouse's button is released
   mouseUpHandler = () => {
     const selection = getSelectedRange();
 
@@ -75,13 +64,20 @@ class Article extends Component {
       const rectangle = selection.getBoundingClientRect();
 
       this.setPosition(rectangle);
-      this.showCommentBtn();
+      this.show('hiddenCommentBtn')
     } else {
-      this.hideCommentBtn();
+      this.hide('hiddenCommentBtn')
+      this.boxCloseHandler();
     }
   };
 
-  // callback fired when comment is changed
+  // callback fired when comment box is closed
+  boxCloseHandler = () => {
+    this.hide('hiddenCommentBox')
+    this.clearComment();
+  }
+
+  // callback fired when user enters a comment
   formChangeHandler = (e) => {
     this.setState(Object.assign(
       {},
@@ -92,7 +88,7 @@ class Article extends Component {
     ));
   }
 
-  // callback fired when comment is submitted
+  // callback fired when user submits a comment
   formSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -108,13 +104,12 @@ class Article extends Component {
         message: this.state.comment
       });
 
-      this.toggleCommentBtn();
-      this.toggleCommentBox();
+      this.hide('hiddenCommentBox');
+      // this.hideCommentBox();
       this.clearComment();
     }
   }
   /* --- */
-
 
   /* general functions */
   // clears the current comment from state
@@ -128,35 +123,26 @@ class Article extends Component {
     ));
   }
 
-  // displays the comment button
-  showCommentBtn = () => {
+  // shows the comment button or box
+  show = (key) => {
     this.setState(Object.assign(
       {},
-      this.state.hiddenCommentBtn,
+      this.state[key],
       {
-        hiddenCommentBtn: false
+        [key]: false
       }
     ));
   }
 
-  // hides the comment button
-  hideCommentBtn = () => {
+  // hides the comment button or box
+  hide = (key) => {
     this.setState(Object.assign(
       {},
-      this.state.hiddenCommentBtn,
+      this.state[key],
       {
-        hiddenCommentBtn: true
+        [key]: true
       }
     ));
-  }
-  // shows or hides the comment box
-  toggleCommentBox = () => {
-    this.toggleState('hiddenCommentBox');
-  }
-
-  // shows or hides the comment button
-  toggleCommentBtn = () => {
-    this.toggleState('hiddenCommentBtn');
   }
 
   // add new comment to the comment list
@@ -181,7 +167,8 @@ class Article extends Component {
       }
     ));
     this.saveText();
-    this.toggleCommentBox();
+    this.show('hiddenCommentBox');
+    this.hide('hiddenCommentBtn');
   }
 
   saveText = () => {
@@ -219,6 +206,7 @@ class Article extends Component {
           hidden={ hiddenCommentBox }
           selected={ selectedText }
           comment={ comment }
+          handleBoxClose={ this.boxCloseHandler }
           handleFormChange={ this.formChangeHandler }
           handleFormSubmit={ this.formSubmitHandler }
         />
