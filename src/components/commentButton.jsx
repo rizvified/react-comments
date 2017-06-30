@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { bool, object, func } from 'prop-types';
 
 const CommentButton = ({ hidden, layout, saveSelection }) => (
   <div
@@ -23,9 +23,10 @@ const CommentButton = ({ hidden, layout, saveSelection }) => (
 );
 
 CommentButton.propTypes = {
-  hidden: PropTypes.bool,
-  layout: PropTypes.object,
-  saveSelection: PropTypes.func,
+  hidden: bool,
+  layout: object,
+  saveSelection: func,
 };
+
 
 export default CommentButton;

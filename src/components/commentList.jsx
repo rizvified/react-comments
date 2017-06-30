@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { arrayOf, object } from 'prop-types';
 
 const CommentList = ({ comments }) => (
   <section className='row'>
@@ -29,7 +29,7 @@ const CommentList = ({ comments }) => (
 );
 
 CommentList.propTypes = {
-  comments: PropTypes.arrayOf(PropTypes.object),
+  comments: arrayOf(object),
 };
 
 export default CommentList;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 
 const Content = ({ handleMouseUp }) => (
   <section className='row'>
@@ -70,14 +70,13 @@ const Content = ({ handleMouseUp }) => (
     issues with them to understand them better and figure out whether or not to care
     about this in the context of your company.
     </p>
-        {/* <hr className='content__seperator' /> */}
       </div>
     </div>
   </section>
 );
 
 Content.propTypes = {
-  handleMouseUp: PropTypes.func,
+  handleMouseUp: func,
 };
 
 export default Content;

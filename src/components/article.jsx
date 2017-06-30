@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { number } from 'prop-types';
 
 import Content from './content.jsx';
 import CommentButton from './commentButton.jsx';
