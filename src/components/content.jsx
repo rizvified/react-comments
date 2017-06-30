@@ -70,7 +70,7 @@ const Content = ({ handleMouseUp }) => (
     issues with them to understand them better and figure out whether or not to care
     about this in the context of your company.
     </p>
-        <hr className='content__seperator' />
+        {/* <hr className='content__seperator' /> */}
       </div>
     </div>
   </section>

@@ -12,7 +12,6 @@ class Article extends Component {
     hiddenCommentBox: true,
     hiddenCommentBtn: true,
     commentBtnLayout: {
-      position: 'absolute',
       left: '0',
       top: '0',
       heightInPixels: 28,
@@ -105,7 +104,6 @@ class Article extends Component {
       });
 
       this.hide('hiddenCommentBox');
-      // this.hideCommentBox();
       this.clearComment();
     }
   }

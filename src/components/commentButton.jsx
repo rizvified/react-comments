@@ -4,25 +4,21 @@ import PropTypes from 'prop-types';
 const CommentButton = ({ hidden, layout, saveSelection }) => (
   <div
     style={ {
-      display: hidden === true ? 'none' : 'block',
-      position: layout.position,
+      display: hidden === true ? 'none' : 'flex',
       left: layout.left,
       top: layout.top,
-      width: `${layout.widthInPixels}px`,
-      height: `${layout.heightInPixels}px`,
     } }
+    className='buttons-group'
   >
-    <div className='buttons-group'>
-      <button
-        onClick={ saveSelection }
-        className='buttons-group__comment-btn'
-      >
-        <span>
+    <button
+      onClick={ saveSelection }
+      className='buttons-group__comment-btn'
+    >
+      <span>
           Comment
         </span>
-      </button>
-      <div className='buttons-group__down-arrow-tip' />
-    </div>
+    </button>
+    <span className='buttons-group__down-arrow-tip' />
   </div>
 );
 

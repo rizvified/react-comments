@@ -1,7 +1,6 @@
 .comment-box {
-  display: block;
+  flex-direction: column;
   position: fixed;
-  visibility: visible;
   width: 30%;
   min-height: 255px;
   left: 69%;
@@ -10,9 +9,8 @@
   background-color: #fff;
   border: 1px solid rgba(0,0,0,.10)!important;
   box-shadow: 0 1px 7px rgba(0,0,0,.05);
-  transition: top 75ms ease-out,left 75ms ease-out;
-  animation: pop-upwards 180ms forwards linear;
-  
+  animation: pop-upwards 200ms forwards linear;
+
   @at-root #{&}__heading {
     font-size: 14px;
     margin-top: 10px;

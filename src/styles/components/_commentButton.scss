@@ -1,7 +1,12 @@
 .buttons-group {
-  display: flex;
+  position: absolute;
+  display: none;
   flex-direction: column;
   align-items: center;
+  width: 70px;
+  height: 28px;
+  transition: top 75ms ease-out,left 75ms ease-out;
+  animation: pop-upwards 180ms forwards linear;
 
   @at-root #{&}__comment-btn {
     border: 0 none;
@@ -19,5 +24,5 @@
     z-index: 500;
     clip-path: polygon(0% 0%, 50% 50%, 100% 0%);
   }
-  
+
 }
